@@ -7,7 +7,6 @@
 # include <deque>
 # include <algorithm>
 
-// template<typename T>
 class Span {
 
 	private:
@@ -21,9 +20,11 @@ class Span {
 		~Span( void );
 		Span &operator=(const Span &src);
 
-		void	addNumber(int num);
-		int		shortestSpan();
-		int		longestSpan();
+		void						addNumber(int num);
+		template<typename It> void	addNumber(It first, It last);
+		int							shortestSpan();
+		int							longestSpan();
+		std::vector<int>			getArr() const;
 
 		// Exceptions
 		class FullContainer : public std::exception {
@@ -36,5 +37,12 @@ class Span {
 				virtual const char *what() const throw();
 		};
 };
+
+template<typename It>
+void	Span::addNumber(It first, It last) {
+	if (std::distance(first, last) > _N)
+		throw	FullContainer();
+	_arr.assign(first, last);
+}
 
 #endif

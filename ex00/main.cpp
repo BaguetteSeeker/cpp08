@@ -2,7 +2,6 @@
 
 int	main ( void ) {
 	std::list<int> ctnrList;
-	// std::list<int>::const_iterator iterator;
 
 	ctnrList.push_back(2);
 	ctnrList.push_back(3);
